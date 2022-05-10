@@ -1,5 +1,7 @@
 # Fun with AI - write interesting stories.
 
+https://gpt-3-app.meghw.dev/
+
 ### Usage
 
 To install all the dependencies, run
