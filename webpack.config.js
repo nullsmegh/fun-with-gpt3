@@ -64,7 +64,7 @@ module.exports = (env, options) => {
         template: path.resolve(__dirname, "public", "index.html"),
       }),
       new ESLintPlugin({ extensions: ["js", "ts", "tsx"] }),
-      new Dotenv()
+      new Dotenv({systemvars: true})
     ],
   };
 };
