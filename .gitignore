@@ -1,0 +1,14 @@
+# OS Files
+.DS_Store
+
+# Node Modules
+node_modules/*
+
+# Dev server files
+src/compiled/*
+
+# SASS cache
+.sass-cache/
+
+# .env file
+.env

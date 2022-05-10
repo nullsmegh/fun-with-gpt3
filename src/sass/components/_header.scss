@@ -1,0 +1,13 @@
+.header {
+	margin: 3rem 0;
+
+	&__logo {
+
+	    font-weight: 300;
+	    text-decoration: none;
+	    color: #000;
+	    font-size: 3rem;
+	    font-family: $theme-secondary-font;
+
+	}
+}
