@@ -1,0 +1,33 @@
+.response {
+
+    padding: 1rem;
+    border: #d4d3d3 solid 1px;
+    border-bottom-width: 0px;
+    animation: 0.3s 0.1s ease fade-in forwards;
+    opacity: 0;
+
+    &:first-of-type {
+    	border-bottom-width: 1px;
+    }
+
+
+	&__field {
+		width: 7.5rem;
+		text-decoration: underline;
+		flex-shrink: 0;
+	}
+
+	&__row {
+		display: flex;
+		margin-bottom: 1rem;
+
+		&:last-of-type {
+			margin-bottom: 0rem;
+		}
+	}
+
+	@keyframes fade-in {
+		from {opacity: 0}
+		to {opacity: 1}
+	}
+}

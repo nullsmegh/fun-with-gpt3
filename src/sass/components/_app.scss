@@ -1,0 +1,47 @@
+.app {
+
+	&__grid {
+		display: flex;
+		height: calc(100vh - 109.11px);
+	}
+
+	&__submit {
+		margin-top: 1rem;
+		text-align: right;
+	}
+
+	&__heading {
+		margin-top: 0rem;
+		font-weight: 300;
+		font-family: $theme-secondary-font;
+		text-transform: uppercase;
+		font-size: 1.2rem;
+		order: 999;
+	}
+	
+	&__responses {
+		display: flex;
+		flex-flow: column-reverse;
+		margin-top: 2rem;
+		margin-bottom: 1rem;
+	}
+
+	&__message {
+		margin-top: 0rem;
+	}
+
+	&__left {
+		display: flex;
+		flex-flow: column;
+		width: 60%;
+		margin-right: 3rem;
+	}
+	&__right {
+		flex-grow: 1;
+	}
+
+	&__paper {
+		background-color: $theme-accent-color;
+		height: 100vh !important;
+	}
+}
