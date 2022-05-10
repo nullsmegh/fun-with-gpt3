@@ -12,6 +12,3 @@ src/compiled/*
 
 # .env file
 .env
-
-# dist
-dist/*
