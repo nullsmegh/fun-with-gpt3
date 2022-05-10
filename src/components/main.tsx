@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 
-import Container from "@material-ui/core/Container";
 
 import { TextArea } from "components/text-area";
 import { ResponseCard } from "components/response-card";
 import { SubmitButton } from "components/submit-button";
 
+import Snackbar from '@material-ui/core/Snackbar';
+import Container from "@material-ui/core/Container";
+import Alert from "@material-ui/lab/Alert";
 import Divider from "@material-ui/core/Divider";
 
 import { openai, getCompletion } from "api/OpenAIService";
@@ -19,12 +21,14 @@ export const Main = (): JSX.Element => {
 
 	const [isLoading, setIsLoading] = useState(false);
 
+ 	const [isError, setIsError] = React.useState(false);
+
+ 	const [errorMessage, setErrorMessage] = React.useState("");
+
 	const [responses, setResponses] = useState(Array<Response>());
 
 
 	const handleSubmit = () => {
-
-		setIsLoading(true);
 
 		getCompletion(prompt).subscribe(data => {
 
@@ -36,10 +40,16 @@ export const Main = (): JSX.Element => {
 
 			setPrompt("");
 
-			setIsLoading(false);
+		}, error => {
 
-		});
+			setErrorMessage(error.response?.status >= 400 
+								? "Please check the OPENAI API KEY and try again." 
+								: "Please check your network and try again.");
+			setIsError(true);
 
+		}).add(() => setIsLoading(false));
+
+		setIsLoading(true);
 	}
 
 	return (
@@ -64,6 +74,12 @@ export const Main = (): JSX.Element => {
             			!responses.length && <p className="app__message">No responses yet. Send prompts to generate responses.</p>
             		}
 				</div>
+
+				<Snackbar open={isError} autoHideDuration={6000} onClose={() => setIsError(false)}>
+			        <Alert severity="error" onClose={() => setIsError(false)}>
+			          { errorMessage }
+			        </Alert>
+				</Snackbar>
 
 			</Container>
 

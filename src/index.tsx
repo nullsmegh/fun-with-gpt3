@@ -6,8 +6,6 @@ import { Header } from "./components/header";
 import { Main } from "./components/main";
 import { StylesProvider } from '@material-ui/styles';
 
-
-
 const App = () => {
 
     return (

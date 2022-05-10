@@ -1,4 +1,4 @@
-import { of , forkJoin, from } from "rxjs";
+import { of , forkJoin, from, throwError } from "rxjs";
 import { fromFetch } from "rxjs/fetch";
 import { switchMap, map, catchError } from "rxjs/operators";
 import { Configuration, OpenAIApi, CreateCompletionResponse } from "openai";
@@ -18,7 +18,7 @@ function getCompletion(prompt: string) {
         max_tokens: 100,
     });
 
-    return from($completion).pipe(map((response) => response.data));
+    return from($completion).pipe(map(response => response.data),catchError((error: any) => throwError(error)));
 
 }
 

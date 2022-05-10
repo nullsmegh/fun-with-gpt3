@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-//import { FilmCard } from "components/film-card"; 
 import { openai } from "api/OpenAIService";
 
 import { Response } from "models/response.model";
