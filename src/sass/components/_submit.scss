@@ -17,6 +17,16 @@
 	z-index: 2;
 	cursor: pointer;
 
+	&:hover::before {
+		content:"";
+		position:fixed;
+		top:0;
+		left:0;
+		right:0;
+		bottom:0;
+		animation:overlay 0.325s forwards;
+	}
+
 	&:after {
 	    content: "";
 	    position: absolute;
@@ -77,6 +87,12 @@
 	&__pulse-bounce:nth-of-type(2) {
     	animation-delay: -.16s
 	}
+
+	@keyframes overlay {
+	  99.99% {bottom:0;}
+	  100% {bottom:100%}
+	}
+
 
 	@keyframes bouncedelay {
 	    0%,80%,to {
