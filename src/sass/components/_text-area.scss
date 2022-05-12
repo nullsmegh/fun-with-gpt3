@@ -1,11 +1,13 @@
-.textarea {
+.text-area {
     position: relative;
 
     &__label {
         display: block;
         text-transform: uppercase;
         font-size: 0.85rem;
-    				margin-bottom: -1.1rem;
+        margin-bottom: -1.1rem;
+        transition: 0.2s linear all;
+        opacity: 1;
     }
 
     &__input {
@@ -22,7 +24,7 @@
         background-color: transparent;
         color: #000;
         opacity: 1;
-        transition: 0.4s linear all;
+        transition: 0.2s linear all;
         &:focus, &:active {
             outline: none;
         }
@@ -43,25 +45,35 @@
     }
 
     &--busy {
-        & .textarea__input {
+
+        & .text-area__label {
+            opacity: 0.5;
+        }
+
+        & .text-area__input {
             pointer-events: none;
+            border-color: #7bfbfb;
             opacity: 0.4;
             &:disabled {
                 border-color: #000;
             }
         }
+
+
+
         &::after {
             display: block;
         }
+
     }
 
     &--focus {
-    	& .textarea__prompt {
+    	& .text-area__prompt {
     		opacity: 0;
     		pointer-events: none;
     	}
 
-        & .textarea__prompt--inner {
+        & .text-area__prompt--inner {
             animation: none;
         }
 

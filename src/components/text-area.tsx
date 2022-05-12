@@ -10,50 +10,65 @@ export const TextArea = ({setPrompt, prompt, isLoading}: {setPrompt: React.Dispa
 
     const [prompts, setPrompts] = React.useState(Array<string>());
 
+    const promptOverflowRef = useRef<HTMLElement>(null);
+
+    const promptTextPrepend = "Write a story about "
+
+
     useEffect(() => {
 
         const prompts = [...Array(3)].map(() => getPromptIdea());
-        prompts.unshift("Write a story about autobots fighting with cookie monsters.");
+        prompts.unshift("auto-bots fighting with cookie monsters.");
 
         setPrompts(prompts);
 
     }, []);
 
-    useEffect(() => {
+    const getCurrentPrompt = () => {
 
-        prompt ? setFocus(true) : setFocus(false);
+        if(focus) return;
 
-    }, [prompt]);
-    
+        const promptOverflow = promptOverflowRef.current || {} as any;
+        const promptChildren = promptOverflow.children || [];
+        let promptTextSelected = "";
+
+        for (const item of promptChildren) {
+            if(item.getBoundingClientRect().top - promptOverflow.getBoundingClientRect().top === 0) {
+                promptTextSelected = item.innerText;
+            } 
+        }
+
+        setPrompt(promptTextPrepend + promptTextSelected);
+    }
+
+    useEffect(() => prompt ? setFocus(true) : setFocus(false), [prompt]);
 
     const onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-
-        event.target.value ? setFocus(true) : setFocus(false);
         setPrompt(event.target.value);
 
     };
 
-    const textAreaClasses = ["textarea", isLoading ? "textarea--busy" : "", focus ? "textarea--focus" : ""].join(" ");
+    const textAreaClassList = ["text-area", isLoading ? "text-area--busy" : "", focus ? "text-area--focus" : ""].join(" ");
 
     return (
-        <div className={textAreaClasses}>
+        <div className={textAreaClassList}>
 
-            <label className="textarea__label">Enter Prompt</label>
+            <label className="text-area__label">Enter Prompt</label>
 
-            <span className="textarea__prompt">
+            <span className="text-area__prompt">
 
-                Example prompt: {' '}
-                <span className="textarea__prompt--overflow">
-                    {prompts.map((prompt, i) => (
-                        <span className="textarea__prompt--inner" key={i}>
-                            {prompt}
+                Eg. prompt: {promptTextPrepend}
+                <span className="text-area__prompt--overflow" ref={promptOverflowRef}>
+                    {prompts.map((promptText, i) => (
+                        <span className="text-area__prompt--inner" key={i}>
+                            { promptText }
                         </span>
                     ))}{" "}
                 </span>
 
             </span>
 
-            <textarea className="textarea__input" disabled={isLoading} onChange={onChange} value={prompt}></textarea>
+            <textarea className="text-area__input" disabled={isLoading} onChange={onChange} onFocus={getCurrentPrompt} value={prompt}></textarea>
         </div>
     );
 };
