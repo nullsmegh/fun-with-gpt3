@@ -8,7 +8,7 @@ export const Header = (): JSX.Element => {
             <Container maxWidth="md">
                 <nav>
                     <a href="/" className="header__logo">
-                        Fun With GPT-3
+                        Play With GPT-3
                     </a>
                 </nav>
                 <Divider />
