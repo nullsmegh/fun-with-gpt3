@@ -60,6 +60,11 @@
     		opacity: 0;
     		pointer-events: none;
     	}
+
+        & .textarea__prompt--inner {
+            animation: none;
+        }
+
     }
 
 

@@ -10,15 +10,21 @@ export const TextArea = ({setPrompt, prompt, isLoading}: {setPrompt: React.Dispa
 
     const [prompts, setPrompts] = React.useState(Array<string>());
 
-
     useEffect(() => {
 
         const prompts = [...Array(3)].map(() => getPromptIdea());
-        prompts.unshift("Write a dialogue about autobots shoveling ice with cookie monsters.");
+        prompts.unshift("Write a story about autobots fighting with cookie monsters.");
 
         setPrompts(prompts);
 
     }, []);
+
+    useEffect(() => {
+
+        prompt ? setFocus(true) : setFocus(false);
+
+    }, [prompt]);
+    
 
     const onChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
 
@@ -36,7 +42,7 @@ export const TextArea = ({setPrompt, prompt, isLoading}: {setPrompt: React.Dispa
 
             <span className="textarea__prompt">
 
-                Example prompt:
+                Example prompt: {' '}
                 <span className="textarea__prompt--overflow">
                     {prompts.map((prompt, i) => (
                         <span className="textarea__prompt--inner" key={i}>
