@@ -13,6 +13,8 @@
 	color: $theme-primary-color;
 	text-transform: uppercase;
 	text-decoration: none;
+	background-color: transparent;
+	white-space: pre;
 	transition:0.2s ease opacity, 0.2s 0.2s ease color;
 	z-index: 2;
 	cursor: pointer;
