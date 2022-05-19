@@ -34,7 +34,7 @@ export const TextArea = ({setPrompt, prompt, isLoading}: {setPrompt: React.Dispa
 
         for (const item of promptChildren) {
             if(item.getBoundingClientRect().top - promptOverflow.getBoundingClientRect().top === 0) {
-                promptTextSelected = item.innerText;
+                promptTextSelected = item.textContent;
             } 
         }
 
