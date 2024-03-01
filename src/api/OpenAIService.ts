@@ -13,7 +13,7 @@ const openai = new OpenAIApi(configuration);
 
 function getCompletion(prompt: string) {
 
-    const $completion = openai.createCompletion("text-davinci-002", {
+    const $completion = openai.createCompletion("gpt-3.5-turbo-instruct", {
         prompt: prompt,
         max_tokens: 100,
     });
